@@ -1,0 +1,43 @@
+split_array =[0.33,0.5,0.67,0.80]
+k_range = [1,6,10,16,20]
+K_values_score=[]
+for k in k_range:
+    k_for_each_split=[]
+    for split_val in split_array:
+         X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=split_val)
+         knn = KNeighborsClassifier(n_neighbors=k)
+         scores = cross_val_score(knn, X_train, y_train, cv=5, scoring='accuracy') 
+         k_for_each_split.append(round(scores.mean()*100,2))
+    K_values_score.append(k_for_each_split)
+print(K_values_score)
+
+
+
+avg_scores_dict={}
+for i in range(len(K_values_score)):
+    temp=0
+    for j in range(len(K_values_score[i])):
+        temp+=K_values_score[i][j]
+    avg_scores_dict.update({"The Average value of n-fold for knn = "+str(k_range[i])+" is ":temp/4}) 
+
+for i in avg_scores_dict:
+    print(i,avg_scores_dict[i])
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+##############################################	
+avg_scores=[]
+for i in K_values_score:
+    temp=0
+    for j in i:
+        temp+=j
+    avg_scores.append(temp/4)    
+        
+print(avg_scores)
