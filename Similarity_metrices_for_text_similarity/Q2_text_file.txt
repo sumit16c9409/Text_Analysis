@@ -1,0 +1,29 @@
+q1 = ‘tax system india strong nation advances gst goods services'
+q2 = 'tax india system'
+q3 = 'select vector index'
+
+doc1=('d1', 'gst tax system is a popular scheme')
+doc2=('d2', 'gst means goods and services tax')
+doc3=('d3', 'strong tax system helps government.')
+doc4=('d4', 'advances in tax system can help in building a nation')
+doc5=('d5', 'For strong nation tax is important')
+
+
+vector_dict['q1'] = {'tax' : 1, 'system' : 1, 'india' : 1, 'strong':1, 'nation':1, 'advances': 1, 'gst':1, 'goods':1, 'services':1}
+vector_dict['q2'] = {'tax' : 1, 'india' : 1, 'system' : 1}
+vector_dict['q3'] = {'select' : 1, 'vector' : 1, 'index' : 1}
+
+ q1 ='The Indian Parliamentary election  in 2019  for  many states'
+ q2= 'states in entire subcontinent will start preparations'
+ q3 ='Ireland is one of the most beautiful countries'
+ 
+ doc1 = ('d1','Parliamentary election in 2019 will decide fate of Indian people')
+ doc2 = ('d2','The states  decide the Indian Parliamentary election dates for 2019')
+ doc3 = ('d3',' Indian Parliamentary election for many states goverment in 2019')
+ doc4 = ('d4','Indian states have Parliamentary elections in many slots')
+ doc5 = ('d5','states of Up and maharashtra has highest candidates for parliamentary election')
+ 
+ 
+ vector_dict['q1'] = {'Indian' : 1, 'Parliamentary' : 1, 'election' : 1, 'start':1, '2019':1, 'many': 1, 'states':1}
+ vector_dict['q2'] = {'current' : 1, 'government' : 1, 'start' : 1,'early' : 1,'preperations' : 1 }
+ vector_dict['q3'] = {'Ireland' : 1, 'one' : 1, 'most' : 1 ,'beautiful' :1 ,'countries' : 1}
