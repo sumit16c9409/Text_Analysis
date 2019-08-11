@@ -1,0 +1,22 @@
+library(tm)
+library(rjson)
+library(wordcloud)
+library(rjson)
+library("xlsx")
+documents  <- fromJSON(file="D:\\CSNL\\Text_Analysis\\Assignment4\\Assign_4.json")
+TD_Matrix = TermDocumentMatrix(Corpus(VectorSource(documents)), control = list(removePunctuation = TRUE, stopwords = TRUE, tolower = TRUE))
+TF_Matrix <- as.matrix(TD_Matrix)
+TF_Matrix <- as.matrix(TD_Matrix)
+tfDataFrame <- data.frame(Word = rownames(TF_Matrix), Frequency = rowSums(TF_Matrix), row.names = NULL)
+write.xlsx(TF_Matrix, file="D:\\CSNL\\Text_Analysis\\Assignment4\\TF_Matrix.xlsx", sheetName = "TF_Matrix",col.names = TRUE, row.names = TRUE, append = FALSE)
+
+#Calculating  TF-IDF
+inverseFreq <- log(ncol(TF_Matrix)/(1 + rowSums(TF_Matrix != 0)))
+inverseFreq <- diag(inverseFreq)
+Tf_Idf_Matrix <- crossprod(TF_Matrix, inverseFreq)
+colnames(Tf_Idf_Matrix) <- rownames(TF_Matrix)
+Transposed_Tf_Idf_Mat <- t(Tf_Idf_Matrix)
+dataToCloud <- data.frame(Word = rownames(Transposed_Tf_Idf_Mat), Frequency = rowSums(Transposed_Tf_Idf_Mat), row.names = NULL)
+write.xlsx(Transposed_Tf_Idf_Mat, file="D:\\CSNL\\Text_Analysis\\Assignment4\\TFIDF_Matrix.xlsx", sheetName = "TFIDF_Matrix",col.names = TRUE, row.names = TRUE, append = FALSE)
+
+wordcloud(dataToCloud$Word, dataToCloud$Frequency, max.words=Inf, random.order=FALSE, colors=brewer.pal(6,"Dark2"))
